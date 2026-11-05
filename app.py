@@ -4,8 +4,8 @@ from datetime import datetime
 
 # CONFIGURATION
 ODDS_API_KEY = "ta_cle_ici"
-LEMON_CHECKOUT_VIP = "https://lemonsqueezy.com"
-LEMON_CHECKOUT_ELITE = "https://lemonsqueezy.com"
+LEMON_CHECKOUT_VIP = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/ce97ef76-b781-4d29-86c3-8ec98b5d74cf"
+LEMON_CHECKOUT_ELITE = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/1d156794-639b-4cc9-a3ac-d3087f05c7e3"
 
 # DONNÉES DE DÉMO
 def get_demo_bets():
