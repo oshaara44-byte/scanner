@@ -2,18 +2,17 @@ import streamlit as st
 from datetime import datetime
 
 # ═══════════════════════════════════════════════════
-# CONFIGURATION & LIENS
+# CONFIGURATION & LIENS (ne pas toucher)
 # ═══════════════════════════════════════════════════
 ODDS_API_KEY = "ta_cle_ici"
 
 LEMON_CHECKOUT_VIP = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/ce97ef76-b781-4d29-86c3-8ec98b5d74cf"
 LEMON_CHECKOUT_ELITE = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/1d156794-639b-4cc9-a3ac-d3087f05c7e3"
 
-# Bookmakers mondiaux scannés (affichés dans le hero)
 BOOKMAKERS = "bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet & Betway"
 
 # ═══════════════════════════════════════════════════
-# SYSTÈME DE TRADUCTION (EN par défaut + ES)
+# TRADUCTIONS (Anglais par défaut + Espagnol)
 # ═══════════════════════════════════════════════════
 T = {
     "en": {
@@ -68,7 +67,7 @@ T = {
         "vip_f4": "Weekly report & tracking",
         "vip_x1": "Surebets & Arbitrage",
         "vip_x2": "Live match alerts",
-        "vip_btn": "🚀 Join the VIP",
+        "vip_btn": "💬 Join the VIP — 29.99€/month",
         "elite_badge": "🔥 MOST POPULAR",
         "elite_title": "👑 ELITE CLUB",
         "elite_sub": "To maximize your profits",
@@ -76,7 +75,7 @@ T = {
         "elite_f2": "Surebets (guaranteed wins)",
         "elite_f3": "Live alerts during matches",
         "elite_f4": "Personalized Kelly bankroll + 7/7 priority support",
-        "elite_btn": "👑 Join the Elite Club",
+        "elite_btn": "👑 Join the Elite Club — 49.99€/month",
         "guarantee_box_title": "🛡️ Our Guarantees",
         "guarantee_box_text": "💳 100% secure payment via Lemon Squeezy  •  🔄 Cancel in 1 click  •  📊 Full transparency of results",
         "bet1_time": "Today • 8:45 PM",
@@ -141,7 +140,7 @@ T = {
         "vip_f4": "Informe y seguimiento semanal",
         "vip_x1": "Surebets y Arbitraje",
         "vip_x2": "Alertas en vivo",
-        "vip_btn": "🚀 Unirse al VIP",
+        "vip_btn": "💬 Unirse al VIP — 29.99€/mes",
         "elite_badge": "🔥 EL MÁS POPULAR",
         "elite_title": "👑 CLUB ELITE",
         "elite_sub": "Para maximizar tus ganancias",
@@ -149,7 +148,7 @@ T = {
         "elite_f2": "Surebets (ganancias garantizadas)",
         "elite_f3": "Alertas en vivo durante los partidos",
         "elite_f4": "Bankroll Kelly personalizado + soporte prioritario 7/7",
-        "elite_btn": "👑 Unirse al Club Elite",
+        "elite_btn": "👑 Unirse al Club Elite — 49.99€/mes",
         "guarantee_box_title": "🛡️ Nuestras Garantías",
         "guarantee_box_text": "💳 Pago 100% seguro vía Lemon Squeezy  •  🔄 Cancelación en 1 clic  •  📊 Transparencia total de resultados",
         "bet1_time": "Hoy • 20:45",
@@ -168,7 +167,7 @@ def t(key):
     return T[st.session_state.lang].get(key, key)
 
 # ═══════════════════════════════════════════════════
-# CONFIGURATION STREAMLIT & STYLES (FOND CLAIR)
+# APP & STYLE (fond clair, titres verts)
 # ═══════════════════════════════════════════════════
 st.set_page_config(
     page_title="The Scanner — Value Bets",
@@ -244,22 +243,6 @@ st.markdown("""
         padding: 4px 12px;
         border-radius: 8px;
     }
-    .price-card {
-        background: #FFFFFF;
-        border: 2px solid #E2E8F0;
-        border-radius: 20px;
-        padding: 35px 25px;
-        text-align: center;
-        height: 100%;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    }
-    .price-card.featured {
-        border-color: #059669;
-        box-shadow: 0 12px 30px rgba(5,150,105,0.18);
-    }
-    .price-title { font-size: 1.5rem; font-weight: 800; color: #0F172A; }
-    .price-amount { font-size: 2.8rem; font-weight: 900; color: #059669; margin: 15px 0; }
-
     section[data-testid="stSidebar"] {
         background-color: #FFFFFF;
         border-right: 1px solid #E2E8F0;
@@ -270,7 +253,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════
-# DONNÉES DE DÉMO (noms propres non traduits)
+# DONNÉES DE DÉMO (bookmakers mondiaux)
 # ═══════════════════════════════════════════════════
 def get_demo_bets():
     return [
@@ -298,7 +281,7 @@ def get_demo_bets():
     ]
 
 # ═══════════════════════════════════════════════════
-# SIDEBAR : LANGUE + NAVIGATION
+# SIDEBAR : LANGUE + MENU
 # ═══════════════════════════════════════════════════
 if "lang" not in st.session_state:
     st.session_state.lang = "en"
@@ -310,7 +293,7 @@ with st.sidebar:
 
     lang_choice = st.selectbox(
         "🌐 Language / Idioma",
-        ["🇬🇧 English", "🇪🇸 Español"],
+        ["🇬🇧 English", "🇪 Español"],
         index=0 if st.session_state.lang == "en" else 1,
         key="lang_select"
     )
@@ -319,7 +302,7 @@ with st.sidebar:
     st.markdown("---")
     page = st.radio(
         "",
-        [t("nav_home"), t("nav_calc"), t("stats_title".replace("📊 ", "")) and t("nav_stats"), t("nav_offers")],
+        [t("nav_home"), t("nav_calc"), t("nav_stats"), t("nav_offers")],
         index=0,
         label_visibility="collapsed"
     )
@@ -438,21 +421,26 @@ elif page == t("nav_stats"):
     st.dataframe(df, use_container_width=True, hide_index=True)
 
 # ═══════════════════════════════════════════════════
-# PAGE 4 : OFFRES
+# PAGE 4 : OFFRES VIP & ELITE (boutons bien alignés)
 # ═══════════════════════════════════════════════════
 elif page == t("nav_offers"):
     st.markdown(f"<h1 style='color:#047857; text-align:center;'>{t('offers_title')}</h1>", unsafe_allow_html=True)
     st.markdown(f"<p style='color:#64748B; text-align:center;'>{t('offers_sub')}</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
+    # --- LIGNE 1 : les deux cartes ---
     col_vip, col_elite = st.columns(2)
 
     with col_vip:
         st.markdown(f"""
-        <div class="price-card">
-            <div class="price-title">{t('vip_title')}</div>
+        <div style="background:#FFFFFF; border:2px solid #E2E8F0; border-radius:20px;
+                    padding:30px; text-align:center; height:100%;
+                    box-shadow:0 8px 24px rgba(0,0,0,0.05);">
+            <div style="font-size:1.5rem; font-weight:800; color:#0F172A;">{t('vip_title')}</div>
             <p style="color:#64748B; font-size:0.9rem;">{t('vip_sub')}</p>
-            <div class="price-amount">29.99€ <span style="font-size:1rem; color:#64748B;">/ mois</span></div>
+            <div style="font-size:2.8rem; font-weight:900; color:#059669; margin:15px 0;">
+                29.99€ <span style="font-size:1rem; color:#64748B;">/ {('mois' if st.session_state.lang=='es' else 'month')}</span>
+            </div>
             <hr style="border-color:#E2E8F0;">
             <p style="color:#1E293B; text-align:left;">✅ {t('vip_f1')}</p>
             <p style="color:#1E293B; text-align:left;">✅ {t('vip_f2')}</p>
@@ -462,15 +450,18 @@ elif page == t("nav_offers"):
             <p style="color:#94A3B8; text-align:left;">❌ {t('vip_x2')}</p>
         </div>
         """, unsafe_allow_html=True)
-        st.link_button(t("vip_btn"), LEMON_CHECKOUT_VIP, use_container_width=True, type="secondary")
 
     with col_elite:
         st.markdown(f"""
-        <div class="price-card featured">
+        <div style="background:#FFFFFF; border:2px solid #059669; border-radius:20px;
+                    padding:30px; text-align:center; height:100%;
+                    box-shadow:0 12px 30px rgba(5,150,105,0.18);">
             <span class="badge-value">{t('elite_badge')}</span>
-            <div class="price-title" style="margin-top:10px;">{t('elite_title')}</div>
+            <div style="font-size:1.5rem; font-weight:800; color:#0F172A; margin-top:10px;">{t('elite_title')}</div>
             <p style="color:#64748B; font-size:0.9rem;">{t('elite_sub')}</p>
-            <div class="price-amount">49.99€ <span style="font-size:1rem; color:#64748B;">/ mois</span></div>
+            <div style="font-size:2.8rem; font-weight:900; color:#059669; margin:15px 0;">
+                49.99€ <span style="font-size:1rem; color:#64748B;">/ {('mois' if st.session_state.lang=='es' else 'month')}</span>
+            </div>
             <hr style="border-color:#E2E8F0;">
             <p style="color:#1E293B; text-align:left;">✅ <b>{t('elite_f1')}</b></p>
             <p style="color:#1E293B; text-align:left;">✅ <b>{t('elite_f2')}</b></p>
@@ -478,11 +469,32 @@ elif page == t("nav_offers"):
             <p style="color:#1E293B; text-align:left;">✅ {t('elite_f4')}</p>
         </div>
         """, unsafe_allow_html=True)
-        st.link_button(t("elite_btn"), LEMON_CHECKOUT_ELITE, use_container_width=True, type="primary")
 
+    # --- LIGNE 2 : les deux boutons CÔTE À CÔTE (alignement garanti) ---
+    st.markdown("<br>", unsafe_allow_html=True)
+    btn_vip, btn_elite = st.columns(2)
+
+    with btn_vip:
+        st.link_button(
+            t("vip_btn"),
+            LEMON_CHECKOUT_VIP,
+            use_container_width=True,
+            type="secondary"
+        )
+
+    with btn_elite:
+        st.link_button(
+            t("elite_btn"),
+            LEMON_CHECKOUT_ELITE,
+            use_container_width=True,
+            type="primary"
+        )
+
+    # --- GARANTIE ---
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown(f"""
-    <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:25px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+    <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px;
+                padding:25px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
         <h3 style="color:#047857;">{t('guarantee_box_title')}</h3>
         <p style="color:#64748B;">{t('guarantee_box_text')}</p>
     </div>
