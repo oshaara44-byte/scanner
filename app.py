@@ -1,48 +1,58 @@
 import streamlit as st
 
 # ═══════════════════════════════════════════════════
-# CONFIGURATION
+# LIENS LEMON SQUEEZY (TES VRAIS LIENS)
 # ═══════════════════════════════════════════════════
-LEMON_CHECKOUT_VIP = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/ce97ef76-b781-4d29-86c3-8ec98b5d74cf"
-LEMON_CHECKOUT_ELITE = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/1d156794-639b-4cc9-a3ac-d3087f05c7e3"
+LEMON_VIP = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/ce97ef76-b781-4d29-86c3-8ec98b5d74cf"
+LEMON_ELITE = "https://trendpulse-ai.lemonsqueezy.com/checkout/buy/1d156794-639b-4cc9-a3ac-d3087f05c7e3"
 
 # ═══════════════════════════════════════════════════
-# MULTILINGUE : ANGLAIS (défaut) + ESPAGNOL
+# 3 LANGUES
 # ═══════════════════════════════════════════════════
-LANGS = {
-    "English": "en",
-    "Español": "es"
-}
+LANGS = {"English": "en", "Français": "fr", "Español": "es"}
 
 TEXT = {
     "en": {
-        "title": "LE SCANNER",
-        "subtitle": "Value Bets & Risk Management",
-        "nav_home": "Home & Value Bets",
-        "nav_calc": "Gain Calculator",
-        "nav_stats": "Transparency",
-        "nav_sub": "VIP & Elite",
-        "hero": "Stop Gambling Blindly. Bet with Real Mathematics.",
-        "sub_hero": "We scan Bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet and Betway in real-time.",
-        "cta": "Don't Miss Bookmaker Pricing Errors Again"
+        "title": "LE SCANNER", "subtitle": "Global Value Bets Platform",
+        "nav1": "🏠 Value Bets", "nav2": "🧮 Calculator",
+        "nav3": "📊 Transparency", "nav4": "💎 Subscribe",
+        "hero_title": "Stop Gambling Blindly.",
+        "hero_sub": "We scan Bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet, Betway.",
+        "cta": "Join VIP Now",
+        "vip_title": "💬 VIP WHATSAPP", "vip_price": "29.99€ / month",
+        "elite_title": "👑 ELITE CLUB", "elite_price": "49.99€ / month",
+        "btn_vip": "🚀 Subscribe VIP", "btn_elite": "👑 Subscribe Elite"
+    },
+    "fr": {
+        "title": "LE SCANNER", "subtitle": "Plateforme Value Bets Mondiale",
+        "nav1": "🏠 Value Bets", "nav2": "🧮 Calculateur",
+        "nav3": "📊 Transparence", "nav4": "💎 S'abonner",
+        "hero_title": "Arrêtez de Parier au Hasard.",
+        "hero_sub": "Nous scannons Bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet, Betway.",
+        "cta": "Rejoindre VIP",
+        "vip_title": "💬 VIP WHATSAPP", "vip_price": "29.99€ / mois",
+        "elite_title": "👑 ELITE CLUB", "elite_price": "49.99€ / mois",
+        "btn_vip": "🚀 S'abonner VIP", "btn_elite": "👑 S'abonner Elite"
     },
     "es": {
-        "title": "EL SCANNER",
-        "subtitle": "Value Bets y Gestión de Riesgo",
-        "nav_home": "Inicio y Value Bets",
-        "nav_calc": "Calculadora",
-        "nav_stats": "Transparencia",
-        "nav_sub": "VIP y Elite",
-        "hero": "Deja de Apostar a Ciegas. Apuesta con Matemáticas Reales.",
-        "sub_hero": "Escaneamos Bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet y Betway en tiempo real.",
-        "cta": "No Pierdas Más Errores de Cuota"
+        "title": "EL SCANNER", "subtitle": "Plataforma Global Value Bets",
+        "nav1": "🏠 Value Bets", "nav2": "🧮 Calculadora",
+        "nav3": "📊 Transparencia", "nav4": "💎 Suscribirme",
+        "hero_title": "Deja de Apostar a Ciegas.",
+        "hero_sub": "Escaneamos Bet365, 1xBet, Betsson, Unibet, Winamax, Betclic, Bwin, Sky Bet, Betway.",
+        "cta": "Unirme VIP",
+        "vip_title": "💬 VIP WHATSAPP", "vip_price": "29.99€ / mes",
+        "elite_title": "👑 ELITE CLUB", "elite_price": "49.99€ / mes",
+        "btn_vip": "🚀 Suscribirme VIP", "btn_elite": "👑 Suscribirme Elite"
     }
 }
 
+BOOKMAKERS = ["Bet365", "1xBet", "Betsson", "Unibet", "Winamax", "Betclic", "Bwin", "Sky Bet", "Betway"]
+
 # ═══════════════════════════════════════════════════
-# STYLE : FOND CLAIR + TITRES COLORÉS
+# STYLE CLAIR + TITRES COLORÉS
 # ═══════════════════════════════════════════════════
-st.set_page_config(page_title="Le Scanner — Global", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Le Scanner", layout="wide", page_icon="🎯")
 
 st.markdown("""
 <style>
@@ -56,8 +66,8 @@ h1, h2, h3 { color: #0F172A !important; font-weight: 900 !important; }
     border-radius: 24px; padding: 50px 30px; color: white; text-align: center;
     box-shadow: 0 25px 50px rgba(15,23,42,0.15); margin-bottom: 30px;
 }
-.hero-box h1 { color: white !important; font-size: 3rem; line-height: 1.1; margin-bottom: 15px; }
-.hero-box p { color: #94A3B8 !important; font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+.hero-box h1 { color: white !important; font-size: 2.8rem; line-height: 1.1; margin-bottom: 15px; }
+.hero-box p { color: #94A3B8 !important; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 .badge { background: rgba(16,185,129,0.15); color: #10B981; padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; border: 1px solid #10B981; display: inline-block; margin-bottom: 20px; }
 .stat-box { background: white; border: 1px solid #E2E8F0; border-radius: 16px; padding: 25px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
 .stat-num { font-size: 2.2rem; font-weight: 900; color: #10B981; }
@@ -69,173 +79,111 @@ h1, h2, h3 { color: #0F172A !important; font-weight: 900 !important; }
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════
-# SIDEBAR : LANGUE + NAVIGATION
+# DONNÉES
 # ═══════════════════════════════════════════════════
-with st.sidebar:
-    st.markdown("### 🌍 Language / Idioma")
-    lang_name = st.selectbox("Choose / Elige", list(TEXT.keys()), index=0)
-    t = TEXT[LANGS[lang_name]]
-    
-    st.markdown("---")
-    st.markdown(f"<h2 style='color:#0F172A; text-align:center;'>{t['title']}</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='color:#64748B; text-align:center;'>Value Bets Algorithm</p>", unsafe_allow_html=True)
-    st.markdown("---")
-    
-    page = st.radio("Menu / Menú", [
-        t["nav_home"], t["nav_calc"], t["nav_stats"], t["nav_sub"]
-    ])
-
-# ═══════════════════════════════════════════════════
-# DONNÉES DÉMO (avec bookmakers mondiaux)
-# ═══════════════════════════════════════════════════
-def get_demo_bets():
+def get_demo():
     return [
-        {
-            "home": "PSG", "away": "Marseille",
-            "sport": "⚽ Ligue 1", "time": "Today • 20:45",
-            "selection": "Over 2.5 Goals",
-            "bookmaker": "Winamax", "odds": 1.88,
-            "value": 14.2, "stake": 25,
-            "analysis": "Anomalie de marge détectée sur le marché des totaux."
-        },
-        {
-            "home": "Real Madrid", "away": "Barcelona",
-            "sport": "⚽ La Liga", "time": "Tomorrow • 21:00",
-            "selection": "Real Madrid Win",
-            "bookmaker": "Bet365", "odds": 2.15,
-            "value": 11.5, "stake": 15,
-            "analysis": "Sous-évaluation détectée après rotation d'effectif."
-        },
-        {
-            "home": "Liverpool", "away": "Arsenal",
-            "sport": "⚽ Premier League", "time": "Tomorrow • 17:30",
-            "selection": "Under 2.5 Goals",
-            "bookmaker": "Sky Bet", "odds": 2.05,
-            "value": 9.1, "stake": 12,
-            "analysis": "Statistiques défensives sous-estimées par le bookmaker."
-        },
-        {
-            "home": "Lakers", "away": "Celtics",
-            "sport": "🏀 NBA", "time": "Tomorrow • 02:30",
-            "selection": "Lakers +4.5",
-            "bookmaker": "Betway", "odds": 1.95,
-            "value": 8.7, "stake": 12,
-            "analysis": "Performance extérieure de Boston surestimée selon notre modèle."
-        }
+        {"home":"PSG","away":"Marseille","sport":"⚽ Ligue 1","time":"Today 20:45","sel":"Over 2.5 Goals","bm":"Winamax","odds":1.88,"val":14.2,"stake":25},
+        {"home":"Real Madrid","away":"Barcelona","sport":"⚽ La Liga","time":"Tomorrow 21:00","sel":"Real Madrid Win","bm":"Bet365","odds":2.15,"val":11.5,"stake":15},
+        {"home":"Liverpool","away":"Arsenal","sport":"⚽ Premier League","time":"Tomorrow 17:30","sel":"Under 2.5","bm":"Sky Bet","odds":2.05,"val":9.1,"stake":12},
+        {"home":"Lakers","away":"Celtics","sport":"🏀 NBA","time":"Tomorrow 02:30","sel":"Lakers +4.5","bm":"Betway","odds":1.95,"val":8.7,"stake":12}
     ]
 
 # ═══════════════════════════════════════════════════
-# LISTE DES BOOKMAKERS MONDIAUX
+# SIDEBAR
 # ═══════════════════════════════════════════════════
-BOOKMAKERS_GLOBAL = ["Bet365", "1xBet", "Betsson", "Unibet", "Winamax", "Betclic", "Bwin", "Sky Bet", "Betway"]
+with st.sidebar:
+    st.markdown("### 🌍 Language")
+    lang = st.selectbox("Choose:", list(TEXT.keys()), index=0)
+    t = TEXT[LANGS[lang]]
+    st.markdown("---")
+    st.markdown(f"<h2 style='text-align:center;color:#0F172A;'>{t['title']}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align:center;color:#64748B;'>{t['subtitle']}</p>", unsafe_allow_html=True)
+    st.markdown("---")
+    page = st.radio("Menu:", [t["nav1"], t["nav2"], t["nav3"], t["nav4"]])
 
 # ═══════════════════════════════════════════════════
 # PAGE 1 : ACCUEIL
 # ═══════════════════════════════════════════════════
-if page == t["nav_home"]:
+if page == t["nav1"]:
     st.markdown(f"""
     <div class="hero-box">
         <span class="badge">🌍 GLOBAL ALGORITHMIC SCANNER</span>
-        <h1>{t['hero']}</h1>
-        <p>{t['sub_hero']}</p>
-        <p style="margin-top:15px; font-size:0.85rem; color:#64748B;">
-            Scanning: {", ".join(BOOKMAKERS_GLOBAL)}
-        </p>
+        <h1>{t['hero_title']}</h1>
+        <p>{t['hero_sub']}</p>
+        <p style="margin-top:10px;color:#64748B;font-size:0.85rem;">Scanning: {", ".join(BOOKMAKERS)}</p>
     </div>
     """, unsafe_allow_html=True)
     
-    c1, c2, c3, c4 = st.columns(4)
+    c1,c2,c3,c4 = st.columns(4)
     with c1: st.markdown('<div class="stat-box"><div class="stat-num">64.2%</div><div class="stat-label">Win Rate</div></div>', unsafe_allow_html=True)
     with c2: st.markdown('<div class="stat-box"><div class="stat-num">+8.3%</div><div class="stat-label">Avg ROI</div></div>', unsafe_allow_html=True)
     with c3: st.markdown('<div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Math Based</div></div>', unsafe_allow_html=True)
     with c4: st.markdown('<div class="stat-box"><div class="stat-num">24/7</div><div class="stat-label">Real-Time</div></div>', unsafe_allow_html=True)
-
-    st.markdown("<h2 style='margin-top:30px;'>🔴 Live Value Bets Found Today</h2>", unsafe_allow_html=True)
     
-    for bet in get_demo_bets():
-        with st.container():
-            st.markdown(f"""
-            <div class="bet-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="color:#64748B; font-size:0.85rem; font-weight:600;">{bet['sport']} • {bet['time']}</span>
-                    <span style="background:rgba(220,38,38,0.1); color:#EF4444; padding:4px 12px; border-radius:50px; font-weight:800; font-size:0.8rem;">VALUE +{bet['value']}%</span>
-                </div>
-                <h3 style="margin-top:10px; color:#0F172A;">{bet['home']} <span style="color:#10B981;">vs</span> {bet['away']}</h3>
-                <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:15px; align-items:center;">
-                    <div>
-                        <span style="color:#64748B; font-size:0.8rem;">SELECTION:</span><br>
-                        <strong style="color:#0F172A;">{bet['selection']}</strong>
-                    </div>
-                    <div>
-                        <span style="color:#64748B; font-size:0.8rem;">BOOKMAKER:</span><br>
-                        <strong style="color:#0F172A;">{bet['bookmaker']}</strong>
-                    </div>
-                    <div style="margin-left:auto;">
-                        <span style="color:#64748B; font-size:0.8rem;">ODDS:</span><br>
-                        <span style="background:#0F172A; color:#FACC15; padding:6px 14px; border-radius:8px; font-weight:800; font-size:1.2rem;">{bet['odds']}</span>
-                    </div>
-                    <div>
-                        <span style="color:#64748B; font-size:0.8rem;">STAKE (KELLY 1/4):</span><br>
-                        <strong style="color:#0F172A; font-size:1.2rem;">{bet['stake']} €</strong>
-                    </div>
-                </div>
-                <p style="margin-top:15px; color:#475569; font-size:0.9rem;">💡 <b>Note:</b> {bet['analysis']}</p>
+    st.markdown("<h2>🔴 Live Value Bets Found Today</h2>", unsafe_allow_html=True)
+    for b in get_demo():
+        st.markdown(f"""
+        <div class="bet-card">
+            <div style="display:flex;justify-content:space-between;">
+                <span style="color:#64748B;font-weight:600;">{b['sport']} • {b['time']}</span>
+                <span style="background:rgba(220,38,38,0.1);color:#EF4444;padding:4px 12px;border-radius:50px;font-weight:800;font-size:0.8rem;">VALUE +{b['val']}%</span>
             </div>
-            """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown(f"""
-    <div style="background:#0F172A; padding:35px; border-radius:20px; text-align:center; color:white;">
-        <h2 style="color:white;">{t['cta']}</h2>
-        <p style="color:#94A3B8; margin-bottom:20px;">Join the VIP WhatsApp Channel and receive the best value bets instantly.</p>
-        <a href="{LEMON_CHECKOUT_VIP}" target="_blank" style="background:#10B981; color:white; padding:15px 35px; border-radius:50px; text-decoration:none; font-weight:900; font-size:1.1rem;">🚀 Get VIP Access</a>
-    </div>
-    """, unsafe_allow_html=True)
+            <h3 style="margin-top:10px;">{b['home']} <span style="color:#10B981;">vs</span> {b['away']}</h3>
+            <div style="display:flex;gap:20px;align-items:center;margin-top:15px;flex-wrap:wrap;">
+                <div><span style="color:#64748B;font-size:0.8rem;">SELECTION</span><br><strong>{b['sel']}</strong></div>
+                <div><span style="color:#64748B;font-size:0.8rem;">BOOKMAKER</span><br><strong>{b['bm']}</strong></div>
+                <div><span style="color:#64748B;font-size:0.8rem;">ODDS</span><br><span style="background:#0F172A;color:#FACC15;padding:6px 14px;border-radius:8px;font-weight:800;">{b['odds']}</span></div>
+                <div><span style="color:#64748B;font-size:0.8rem;">STAKE (KELLY)</span><br><strong style="font-size:1.2rem;">{b['stake']} €</strong></div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════
 # PAGE 2 : CALCULATEUR
 # ═══════════════════════════════════════════════════
-elif page == t["nav_calc"]:
+elif page == t["nav2"]:
     st.markdown("<h1>🧮 Investment Simulator</h1>", unsafe_allow_html=True)
-    bankroll = st.slider("Initial Capital (€)", 100, 5000, 500, 50)
-    mois = st.slider("Duration (Months)", 1, 12, 6)
-    final = bankroll * (1.083 ** mois)
-    st.metric("Estimated Final Capital", f"{final:.2f} €", f"+{final-bankroll:.2f} €")
+    b = st.slider("Initial Capital (€)", 100, 5000, 500, 50)
+    m = st.slider("Months", 1, 12, 6)
+    final = b * (1.083 ** m)
+    st.metric("Estimated Final", f"{final:.2f} €", f"+{final-b:.2f} €")
 
 # ═══════════════════════════════════════════════════
 # PAGE 3 : TRANSPARENCE
 # ═══════════════════════════════════════════════════
-elif page == t["nav_stats"]:
-    st.markdown("<h1>📊 Transparency & Performance</h1>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Bets Analyzed", "14,820+")
+elif page == t["nav3"]:
+    st.markdown("<h1>📊 Transparency</h1>", unsafe_allow_html=True)
+    c1,c2,c3 = st.columns(3)
+    c1.metric("Bets", "14,820+")
     c2.metric("Win Rate", "64.2%")
-    c3.metric("Avg Margin", "+9.8%")
+    c3.metric("Margin", "+9.8%")
 
 # ═══════════════════════════════════════════════════
-# PAGE 4 : ABONNEMENT (DEUX BOUTONS CLAIRS, CÔTE À CÔTE)
+# PAGE 4 : ABONNEMENT AVEC DEUX BOUTONS CLAIRS
 # ═══════════════════════════════════════════════════
-elif page == t["nav_sub"]:
+elif page == t["nav4"]:
     st.markdown("<h1 style='text-align:center;'>💎 Choose Your Plan</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center;color:#64748B;'>Get value bets directly on WhatsApp.</p>", unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
+    col_a, col_b = st.columns(2)
     
-    with col1:
+    # BOUTON VIP
+    with col_a:
         st.markdown("### 💬 VIP WHATSAPP")
-        st.markdown("**29.99€ / month**")
-        st.write("• 3 to 5 Value Bets per day")
+        st.write("**29.99€ / month**")
+        st.write("• 3 to 5 Value Bets")
         st.write("• WhatsApp delivery")
-        st.write("• Stake calculator included")
-        st.write("• Daily tracking report")
-        if st.button("🚀 Subscribe VIP", key="vip", use_container_width=True):
-            st.markdown(f"[👉 Pay with Lemon Squeezy (VIP)]({LEMON_CHECKOUT_VIP})")
+        st.write("• Stake calculator")
+        if st.button(t["btn_vip"], key="vip", use_container_width=True, type="primary"):
+            st.markdown(f"[👉 {t['cta']}]({LEMON_VIP})")
     
-    with col2:
+    # BOUTON ELITE
+    with col_b:
         st.markdown("### 👑 ELITE CLUB")
-        st.markdown("**49.99€ / month**")
+        st.write("**49.99€ / month**")
         st.write("• Everything in VIP")
-        st.write("• Surebets & Guaranteed Wins")
+        st.write("• Surebets Guaranteed")
         st.write("• Live Match Alerts")
-        st.write("• Priority Support")
-        if st.button("👑 Subscribe Elite", key="elite", use_container_width=True):
-            st.markdown(f"[👉 Pay with Lemon Squeezy (Elite)]({LEMON_CHECKOUT_ELITE})")
+        if st.button(t["btn_elite"], key="elite", use_container_width=True, type="primary"):
+            st.markdown(f"[👉 {t['cta']}]({LEMON_ELITE})")
